@@ -40,7 +40,7 @@ export default function Form() {
  
   return (
     <div>
-      <form submit={handleSubmit} className="flex flex-row px-5">
+      <form onSubmit={handleSubmit} className="flex flex-row px-5">
         <label>
           Asset Tag:*
           <p className="text-xs">Format: Location-DeviceType-Num </p>
