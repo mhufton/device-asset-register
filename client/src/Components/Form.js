@@ -1,6 +1,6 @@
 import React from "react";
 
-const operatingSystems = ["Mac", "Microsoft", "Mobile: Apple", "Mobile: Android", "Other"]
+const operatingSystems = ["Mac", "Microsoft", "iPhone", "Android", "Apple", "Other"]
 const mapOS = () => {
   return operatingSystems.map((os, index) => {
     return (
@@ -75,7 +75,7 @@ export default function Form() {
             id="dateBought"
             name="dateBought"
             required
-            placeholder="dd-mm-yy"
+            placeholder="dd-mm-yyyy"
             onChange={handleChange}
             value={formData.dateBought}
             className="border rounded px-1 mr-2"
@@ -100,7 +100,7 @@ export default function Form() {
             type="text"
             id="decommisionDate"
             name="decommisionDate"
-            placeholder="Enter decomission date"
+            placeholder="dd-mm-yyyy"
             onChange={handleChange}
             value={formData.decommisionDate}
             className="border rounded px-1 mr-2"
