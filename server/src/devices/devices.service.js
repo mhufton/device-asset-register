@@ -1,7 +1,9 @@
-const knex = require("knex");
+const knex = require("../db/connection");
 
 function list() {
-  return knex("devices");
+  return knex("devices")
+    .select("*")
+    .orderBy("device_id");
 }
 
 function create(device) {

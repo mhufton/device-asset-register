@@ -16,7 +16,7 @@ export default function DeviceList() {
 
     async function loadDevices() {
       try {
-        const data = await listDevices([], controller.signal)
+        const data = await listDevices(controller.signal)
         setDevices(data);
       } catch (error) {
         setError(error)

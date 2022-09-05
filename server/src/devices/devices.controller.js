@@ -28,6 +28,10 @@ async function deviceExists(req, res, next) {
   }
 }
 
+//
+// CRUDL functions
+//
+
 async function create(req, res) {
   const device = await service.create(req.body.data);
   res.status(201).json({ data: device })

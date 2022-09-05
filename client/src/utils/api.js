@@ -40,10 +40,7 @@ headers.append("Content-Type", "application/json");
     }
 }
   
-export async function listDevices(params, signal) {
-  const url = new URL(`${API_BASE_URL}/`);
-  Object.entries(params).forEach(([key, value]) =>
-    url.searchParams.append(key, value.toString())
-  );
-  return await fetchJson(url, { headers, signal }, [])
+export async function listDevices(signal) {
+  const url = `${API_BASE_URL}/`;
+  return await fetchJson(url, { signal });
 }

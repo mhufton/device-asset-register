@@ -18,11 +18,11 @@ app.get('./allow-cors', function (req, res) {
 app.use(cors());
 app.use(express.json());
 
-app.use("/devices", devicesRouter);
+app.use("/", devicesRouter);
 
 app.use((req, res, next) => {
   next({ status: 404, message: `Path not found ${req.originalUrl}` })
 });
 app.use(errorHandler);
 
-module.export = app;
+module.exports = app;
