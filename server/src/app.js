@@ -7,7 +7,6 @@ const cors = require("cors");
 
 const errorHandler = require("./errors/errorHandler")
 const devicesRouter = require("./devices/devices.router");
-const { NOTFOUND } = require("dns");
 
 const app = express();
 
@@ -19,7 +18,7 @@ app.get('./allow-cors', function (req, res) {
 app.use(cors());
 app.use(express.json());
 
-app.use("/devices");
+app.use("/devices", devicesRouter);
 
 app.use((req, res, next) => {
   next({ status: 404, message: `Path not found ${req.originalUrl}` })

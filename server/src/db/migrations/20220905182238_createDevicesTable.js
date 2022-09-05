@@ -4,13 +4,13 @@
  */
 exports.up = function(knex) {
   return knex.schema.createTable('devices', (table) => {
-    table.increments("device_id").primary();
-    table.string("assetTag");
+    table.increments("device_id").primary().notNullable();;
+    table.string("assetTag").notNullable();;
     table.string("assignedTo");
-    table.date("dateBought");
+    table.date("dateBought").notNullable();;
     table.date("decommisionDate");
-    table.string("deviceType");
-    table.string("operatingSystem");
+    table.string("deviceType").notNullable();;
+    table.string("operatingSystem").notNullable();;
   })
 };
 
