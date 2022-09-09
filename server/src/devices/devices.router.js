@@ -8,4 +8,10 @@ router
   .post(controller.create)
   .all(methodNotAllowed);
 
+router
+  .route('/:deviceId')
+  .get(controller.read)
+  .put(controller.update)
+  .all(methodNotAllowed)
+
 module.exports = router;

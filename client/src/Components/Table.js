@@ -1,4 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"
+
+const EditButton = ({ device_id }) => {
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <button onClick={() => navigate(`/${device_id}`)}>
+        <span>&#9998;</span>
+      </button>
+    </>
+  )
+}
 
 export default function Table({ devices }) {
   return (
@@ -26,7 +39,7 @@ export default function Table({ devices }) {
               <td>{device.operatingSystem}</td>
               <td>{device.dateBought && device.dateBought.slice(0, 10)}</td>
               <td>{device.decommisionDate && device.decommisionDate.slice(0, 10)}</td>
-              <td><button><span>&#9998;</span></button></td>
+              <td><EditButton device_id={device.device_id}/></td>
             </tr>
           </tbody>
         )

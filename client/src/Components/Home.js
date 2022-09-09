@@ -1,12 +1,12 @@
 import React from "react";
-import Form from "./Form";
+import NewDevice from "./NewDevice"
 import DeviceList from "./DeviceList"
 
 export default function Home() {
   return (
     <div className="flex flex-col">
       <DeviceList />
-      <Form />
+      <NewDevice />
     </div>
   )
 }

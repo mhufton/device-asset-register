@@ -1,8 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import { createDevice } from "../utils/api";
-
 const operatingSystems = ["Mac", "Microsoft", "iPhone", "Android", "Apple", "Other"]
 const mapOS = () => {
   return operatingSystems.map((os, index) => {
@@ -18,40 +16,14 @@ const mapOS = () => {
   })
 }
 
-export default function Form() {
-  const initialState = {
-    assetTag: "",
-    assignedTo: "",
-    dateBought: null,
-    deviceType: "",
-    decommisionDate: null,
-    operatingSystem: "",
-  };
-  const [formData, setFormData] = React.useState(initialState)
+export default function Form({ formData, setFormData, handleChange, handleSubmit }) {
   const [errors, setErrors] = React.useState(null);
-
   const history = useLocation();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("formData: ", formData)
-    try {
-      createDevice(formData)
-      window.location.reload()
-    } catch (error) {
-      setErrors(error)
-    }
-  }
-
-  const handleChange = ({ target }) => {
-    setFormData({
-      ...formData,
-      [target.name]: target.value
-    })
-  }
- 
+  
   return (
     <div className="flex justify-center">
+      
       <form onSubmit={handleSubmit} className="flex flex-col p-5 mt-10 bg-gray-200 rounded-xl">
         <label className="flex flex-row justify-between mb-5">
           Asset Tag:*

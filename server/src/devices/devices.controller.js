@@ -42,9 +42,33 @@ async function list(req, res) {
   res.json({ data: await service.list() })
 }
 
+async function read(req, res) {
+  const { device_id } = res.locals.device;
+  res.json({ data: device_id })
+}
+
+async function update(req, res) {
+  const { device } = res.locals;
+  const { data } = req.body.data;
+  const updatedDeviceData = {
+    ...device,
+    ...data,
+  }
+  const updatedDevice = await service.updated(updatedDeviceData);
+  res.json({ data: updatedDevice })
+}
+
 module.exports = {
   list: asyncErrorBoundary(list),
   create: [
     asyncErrorBoundary(create)
+  ],
+  read: [
+    deviceExists,
+    asyncErrorBoundary(read)
+  ],
+  update: [
+    deviceExists,
+    asyncErrorBoundary(update)
   ]
 }

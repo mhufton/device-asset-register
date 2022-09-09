@@ -55,3 +55,21 @@ export async function createDevice(device, signal) {
   }
   return await fetchJson(url, options, {})
 }
+
+export async function readDevice(device_id, signal) {
+  const url = `${API_BASE_URL}/${device_id}`;
+  return await fetchJson(url, { signal })
+}
+
+export async function updateDevice(updatedDevice, device_id, signal) {
+  const url = `${API_BASE_URL}/${device_id}`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({
+      data: updatedDevice
+    }),
+    signal
+  }
+  return await fetchJson(url, options, {})
+}

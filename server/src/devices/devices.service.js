@@ -16,8 +16,16 @@ function create(device) {
 function read(deviceId) {
   return knex("devices")
     .select("*")
-    .where(deviceId)
+    .where({ deviceId })
     .then((record) => record[0]);
+}
+
+function update(updatedDevice) {
+  return knex(devices)
+    .select("*")
+    .where({ device_id: updatedDevice.device_id })
+    .update(updatedDevice, "*")
+    .then((record) => record[0])
 }
 
 function destroy(deviceId) {
@@ -30,5 +38,6 @@ module.exports = {
   list,
   create,
   read,
+  update,
   destroy
 }
