@@ -49,12 +49,16 @@ async function read(req, res) {
 
 async function update(req, res) {
   const { device } = res.locals;
-  const { data } = req.body.data;
+  console.log("device", device)
+  const data = req.body.data;
+  console.log("data", data)
   const updatedDeviceData = {
     ...device,
     ...data,
   }
-  const updatedDevice = await service.updated(updatedDeviceData);
+  console.log("updatedDeviceData", updatedDeviceData)
+  const updatedDevice = await service.update(updatedDeviceData);
+  console.log("updatedDevice", updatedDevice)
   res.json({ data: updatedDevice })
 }
 

@@ -21,7 +21,7 @@ function read(deviceId) {
 }
 
 function update(updatedDevice) {
-  return knex(devices)
+  return knex("devices")
     .select("*")
     .where({ device_id: updatedDevice.device_id })
     .update(updatedDevice, "*")

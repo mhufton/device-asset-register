@@ -1,6 +1,6 @@
 import React from "react";
 import Form from './Form'
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { readDevice, updateDevice } from "../utils/api"
 
 export default function EditDevice() {
@@ -14,6 +14,7 @@ export default function EditDevice() {
   };
   const [formData, setFormData] = React.useState(initialState)
 
+  const navigate = useNavigate();
   const params = useParams();
   const device_id = params.device_id;
 
@@ -52,8 +53,8 @@ export default function EditDevice() {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      updateDevice(formData, formData.device_id)
-      window.location.reload()
+      updateDevice(formData)
+       .then(() => navigate("/"))
     } catch (err) {
       console.log(err)
     }

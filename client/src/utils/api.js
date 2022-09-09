@@ -61,8 +61,8 @@ export async function readDevice(device_id, signal) {
   return await fetchJson(url, { signal })
 }
 
-export async function updateDevice(updatedDevice, device_id, signal) {
-  const url = `${API_BASE_URL}/${device_id}`;
+export async function updateDevice(updatedDevice, signal) {
+  const url = `${API_BASE_URL}/${updatedDevice.device_id}`;
   const options = {
     method: "PUT",
     headers,
