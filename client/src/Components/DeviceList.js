@@ -1,11 +1,6 @@
 import React from "react";
 import { listDevices } from "../utils/api";
-
-function mapDevices(devices) {
-  return devices.map((d, index) => {
-    return <p key={index}>{d.assetTag}</p>
-  })
-}
+import Table from "./Table";
 
 export default function DeviceList() {
   const [devices, setDevices] = React.useState([]);
@@ -24,11 +19,13 @@ export default function DeviceList() {
     };
 
     loadDevices();
+
+    return () => controller.abort();
   }, [])
 
   return (
     <div>
-      {devices ? mapDevices(devices) : <p>Loading...</p>}
+      {devices ? <Table devices={devices} /> : <p>Loading...</p>}
     </div>
   )
 }

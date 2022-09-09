@@ -1,4 +1,7 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
+
+import { createDevice } from "../utils/api";
 
 const operatingSystems = ["Mac", "Microsoft", "iPhone", "Android", "Apple", "Other"]
 const mapOS = () => {
@@ -19,16 +22,25 @@ export default function Form() {
   const initialState = {
     assetTag: "",
     assignedTo: "",
-    dateBought: "",
+    dateBought: null,
     deviceType: "",
-    decommisionDate: "",
+    decommisionDate: null,
     operatingSystem: "",
   };
   const [formData, setFormData] = React.useState(initialState)
+  const [errors, setErrors] = React.useState(null);
+
+  const history = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("formData: ", formData)
+    try {
+      createDevice(formData)
+      window.location.reload()
+    } catch (error) {
+      setErrors(error)
+    }
   }
 
   const handleChange = ({ target }) => {
@@ -39,12 +51,14 @@ export default function Form() {
   }
  
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="flex flex-row px-5">
-        <label>
+    <div className="flex justify-center">
+      <form onSubmit={handleSubmit} className="flex flex-col p-5 mt-10 bg-gray-200 rounded-xl">
+        <label className="flex flex-row justify-between mb-5">
           Asset Tag:*
-          <p className="text-xs">Format: Location-DeviceType-Num </p>
-          <p className="text-xs">Ex: Edinburgh-iPhone-01</p>
+          <div className="px-4">
+            <p className="text-xs">Format: Location-DeviceType-Num </p>
+            <p className="text-xs">Ex: Edinburgh-iPhone-01</p>
+          </div>
           <input
             type="text"
             id="assetTag"
@@ -53,10 +67,10 @@ export default function Form() {
             placeholder="Enter asset tag"
             onChange={handleChange}
             value={formData.assetTag}
-            className="border rounded px-1 mr-2"
+            className="border rounded px-1 mr-2 justify-end"
           />
         </label>
-        <label>
+        <label className="flex flex-row justify-between mb-5">
           Assigned To:
           <input
             type="text"
@@ -68,20 +82,20 @@ export default function Form() {
             className="border rounded px-1 mr-2"
           />
         </label>
-        <label>
+        <label className="flex flex-row justify-between mb-5">
           Date Bought:*
           <input
             type="text"
             id="dateBought"
             name="dateBought"
             required
-            placeholder="dd-mm-yyyy"
+            placeholder="yyyy-mm-dd"
             onChange={handleChange}
             value={formData.dateBought}
-            className="border rounded px-1 mr-2"
+            className="border rounded px-1 mr-2 flex justify-end"
           />
         </label>
-        <label>
+        <label className="flex flex-row justify-between mb-5">
           Device Type:*
           <input
             type="text"
@@ -94,19 +108,19 @@ export default function Form() {
             className="border rounded px-1 mr-2"
           />
         </label>
-        <label>
+        <label className="flex flex-row justify-between mb-5">
           Decommission Date:
           <input
             type="text"
             id="decommisionDate"
             name="decommisionDate"
-            placeholder="dd-mm-yyyy"
+            placeholder="yyyy-mm-dd"
             onChange={handleChange}
             value={formData.decommisionDate}
             className="border rounded px-1 mr-2"
           />
         </label>
-        <label>
+        <label className="flex flex-row justify-between mb-5">
           Operating System:*
           <select
             value={formData.operatingSystem}
@@ -116,7 +130,7 @@ export default function Form() {
             {mapOS()}
           </select>
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit" className="bg-blue-400 w-20 rounded text-white py-1 flex justify-center">Submit</button>
       </form>
     </div>
   )

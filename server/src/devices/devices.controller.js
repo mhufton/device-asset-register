@@ -33,6 +33,7 @@ async function deviceExists(req, res, next) {
 //
 
 async function create(req, res) {
+  console.log(req.body.data)
   const device = await service.create(req.body.data);
   res.status(201).json({ data: device })
 }

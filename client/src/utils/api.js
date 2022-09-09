@@ -44,3 +44,14 @@ export async function listDevices(signal) {
   const url = `${API_BASE_URL}/`;
   return await fetchJson(url, { signal });
 }
+
+export async function createDevice(device, signal) {
+  const url = `${API_BASE_URL}/`;
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ data: device }),
+    signal
+  }
+  return await fetchJson(url, options, {})
+}
