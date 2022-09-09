@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 
 const operatingSystems = ["Mac", "Microsoft", "iPhone", "Android", "Apple", "Other"]
 const mapOS = () => {
@@ -16,11 +15,7 @@ const mapOS = () => {
   })
 }
 
-export default function Form({ formData, setFormData, handleChange, handleSubmit }) {
-  const [errors, setErrors] = React.useState(null);
-  const history = useLocation();
-
-  
+export default function Form({ formData, handleChange, handleSubmit }) {
   return (
     <div className="flex justify-center">
       

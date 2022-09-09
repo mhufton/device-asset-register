@@ -1,40 +1,46 @@
 import React from "react";
 import Form from './Form'
 import { useParams } from "react-router-dom";
-import { readDevice, createDevice } from "../utils/api"
+import { readDevice, updateDevice } from "../utils/api"
 
 export default function EditDevice() {
   const initialState = {
     assetTag: "",
     assignedTo: "",
-    dateBought: null,
+    dateBought: "",
     deviceType: "",
-    decommisionDate: null,
+    decommisionDate: "",
     operatingSystem: "",
   };
   const [formData, setFormData] = React.useState(initialState)
 
   const params = useParams();
-  const device_id = Number(params.device_id);
-  console.log(formData)
+  const device_id = params.device_id;
 
+  // load the device info we wish to edit
   React.useEffect(() => {
     const controller = new AbortController();
 
     if (device_id) {
       async function loadDevice() {
         try {
-          const loadedDevice = await readDevice(device_id, controller.signal)
-          console.log(loadedDevice)
-          setFormData(loadedDevice)
+          const loadedDevice = await readDevice(device_id)
+          // format the loaded device date to trim the date 
+          const formattedDevice = {
+            ...loadedDevice,
+            dateBought: loadedDevice.dateBought.slice(0, 10),
+            decommisionDate: loadedDevice.decommisionDate.slice(0, 10),
+          }
+          setFormData(formattedDevice)
         } catch (err) {
           console.log(err)
         }
       }
       loadDevice();
     }
+
     return () => controller.abort();
-  }, [device_id])
+  }, [])
 
   const handleChange = ({ target }) => {
     setFormData({
@@ -45,9 +51,8 @@ export default function EditDevice() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("formData: ", formData)
     try {
-      createDevice(formData)
+      updateDevice(formData, formData.device_id)
       window.location.reload()
     } catch (err) {
       console.log(err)

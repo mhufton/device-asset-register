@@ -15,7 +15,7 @@ const VALID_PROPERTIES_POST = [
 ]
 
 async function deviceExists(req, res, next) {
-  const { device_id } = req.body.data;
+  const device_id = req.params.deviceId;
   const data = await service.read(device_id);
   if (data) {
     res.locals.device = data;
@@ -43,8 +43,8 @@ async function list(req, res) {
 }
 
 async function read(req, res) {
-  const { device_id } = res.locals.device;
-  res.json({ data: device_id })
+  const device = res.locals.device;
+  res.json({ data: device })
 }
 
 async function update(req, res) {
