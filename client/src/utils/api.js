@@ -73,3 +73,13 @@ export async function updateDevice(updatedDevice, signal) {
   }
   return await fetchJson(url, options, {})
 }
+
+export async function deleteDevice(device_id, signal) {
+  const url = `${API_BASE_URL}/${device_id}`
+  const options = {
+    method: "DELETE",
+    headers,
+    signal
+  }
+  return await fetchJson(url, options, {})
+}

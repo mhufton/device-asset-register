@@ -30,7 +30,7 @@ function update(updatedDevice) {
 
 function destroy(deviceId) {
   return knex("devices")
-    .where(deviceId)
+    .where({ device_id: deviceId })
     .del();
 }
 

@@ -6,9 +6,9 @@ export default function NewDevice() {
   const initialState = {
     assetTag: "",
     assignedTo: "",
-    dateBought: null,
+    dateBought: "",
     deviceType: "",
-    decommisionDate: null,
+    decommisionDate: "",
     operatingSystem: "",
   };
   const [formData, setFormData] = React.useState(initialState)

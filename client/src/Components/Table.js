@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"
+import { deleteDevice } from "../utils/api";
 
 const EditButton = ({ device_id }) => {
   const navigate = useNavigate();
@@ -11,6 +12,25 @@ const EditButton = ({ device_id }) => {
       </button>
     </>
   )
+}
+
+const handleDelete = ({ device_id }) => {
+  const controller = new AbortController();
+
+  try {
+    deleteDevice(device_id, controller.signal)
+    window.location.reload()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const DeleteButton = ({ device_id }) => {
+  <>
+    <button onClick={() => handleDelete(device_id)}>
+      <span>&#xF5DE;</span>
+    </button>
+  </>
 }
 
 export default function Table({ devices }) {
@@ -26,12 +46,13 @@ export default function Table({ devices }) {
           <th>Date Bought</th>
           <th>Decommission Date</th>
           <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       {devices && devices.map((device, index) => {
         return (
-          <tbody>
-            <tr key={device.device_id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <tbody key={device.device_id}>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td>{device.device_id}</td>
               <td>{device.assetTag}</td>
               <td>{device.assignedTo}</td>
