@@ -75,6 +75,7 @@ export async function updateDevice(updatedDevice, signal) {
 }
 
 export async function deleteDevice(device_id, signal) {
+  console.log("inside delete api", device_id, typeof(device_id))
   const url = `${API_BASE_URL}/${device_id}`
   const options = {
     method: "DELETE",

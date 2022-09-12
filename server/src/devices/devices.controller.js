@@ -16,8 +16,10 @@ const VALID_PROPERTIES_POST = [
 
 async function deviceExists(req, res, next) {
   const device_id = req.params.deviceId;
-  const data = await service.read(device_id);
+  const data = await service.read(Number(device_id));
+  console.log(`checking if device ${device_id} exists`)
   if (data) {
+    console.log("device exists!")
     res.locals.device = data;
     return next();
   } else {
@@ -33,7 +35,6 @@ async function deviceExists(req, res, next) {
 //
 
 async function create(req, res) {
-  console.log(req.body.data)
   const device = await service.create(req.body.data);
   res.status(201).json({ data: device })
 }
@@ -49,17 +50,20 @@ async function read(req, res) {
 
 async function update(req, res) {
   const { device } = res.locals;
-  console.log("device", device)
   const data = req.body.data;
-  console.log("data", data)
   const updatedDeviceData = {
     ...device,
     ...data,
   }
-  console.log("updatedDeviceData", updatedDeviceData)
   const updatedDevice = await service.update(updatedDeviceData);
-  console.log("updatedDevice", updatedDevice)
   res.json({ data: updatedDevice })
+}
+
+async function destroy(req, res) {
+  console.log(res.locals)
+  const { device_id } = res.locals.device;
+  const data = await service.destroy(device_id)
+  res.status(204).json({ data })
 }
 
 module.exports = {
@@ -74,5 +78,9 @@ module.exports = {
   update: [
     deviceExists,
     asyncErrorBoundary(update)
+  ],
+  destroy: [
+    deviceExists,
+    asyncErrorBoundary(destroy)
   ]
 }
