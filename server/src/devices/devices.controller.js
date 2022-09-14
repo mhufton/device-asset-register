@@ -5,14 +5,14 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 // middleware functions
 //
 
-const VALID_PROPERTIES_POST = [
-  "device_id",
-  "assetTag",
-  "assignedTo",
-  "dateBought",
-  "deviceType",
-  "operatingSystem",
-]
+// const VALID_PROPERTIES_POST = [
+//   "device_id",
+//   "assetTag",
+//   "assignedTo",
+//   "dateBought",
+//   "deviceType",
+//   "operatingSystem",
+// ]
 
 async function deviceExists(req, res, next) {
   const device_id = req.params.deviceId;
@@ -35,8 +35,17 @@ async function deviceExists(req, res, next) {
 //
 
 async function create(req, res) {
-  const device = await service.create(req.body.data);
-  res.status(201).json({ data: device })
+  let device = req.body.data;
+  if (device.decommisionDate === "") {
+    device = {
+      ...req.body.data,
+      decommisionDate: null
+    }
+  }
+  console.log("device: ", device)
+  const newDevice = await service.create(device);
+  console.log("newDevice", newDevice)
+  res.status(201).json({ data: newDevice })
 }
 
 async function list(req, res) {
