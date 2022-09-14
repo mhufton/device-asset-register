@@ -33,14 +33,14 @@ export default function NewDevice() {
   }
 
   return (
-    <>
-      <h1 className="text-center mt-10">Create A New Device</h1>
+    <div className="font-Oswald font-bold">
+      <h1 className="text-center mt-5">Create A New Device</h1>
       <Form
         formData={formData}
         setFormData={setFormData}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-    </>
+    </div>
   )
 }

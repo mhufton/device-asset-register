@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from 'react';
 import { listDevices } from "../utils/api";
 import Table from "./Table";
 
@@ -24,8 +24,10 @@ export default function DeviceList() {
   }, [])
 
   return (
-    <div>
-      {devices ? <Table devices={devices} /> : <p>Loading...</p>}
+    <div className="mx-3 border rounded-xl">
+      {devices ?
+        <Table devices={devices} />
+        : <p>Loading...</p>}
     </div>
   )
 }

@@ -13,6 +13,7 @@ export default function EditDevice() {
     operatingSystem: "",
   };
   const [formData, setFormData] = React.useState(initialState)
+  console.log(formData)
 
   const navigate = useNavigate();
   const params = useParams();

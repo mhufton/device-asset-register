@@ -17,10 +17,12 @@ const mapOS = () => {
 
 export default function Form({ formData, handleChange, handleSubmit }) {
   return (
-    <div className="flex justify-center">
-      
-      <form onSubmit={handleSubmit} className="flex flex-col p-5 mt-10 bg-gray-200 rounded-xl">
-        <label className="flex flex-row justify-between mb-5">
+    <div className="flex justify-center font-Oswald font-bold">
+      <form onSubmit={handleSubmit} className="flex flex-col p-5 mt-1 bg-gray-100 rounded-xl border-2 border-slate-300">
+        {formData.device_id && <label>
+          ID: {formData.device_id}
+        </label>}
+        <label className="flex flex-row justify-between mb-5 text-xl">
           Asset Tag:*
           <div className="px-4">
             <p className="text-xs">Format: Location-DeviceType-Num </p>
@@ -37,7 +39,7 @@ export default function Form({ formData, handleChange, handleSubmit }) {
             className="border rounded px-1 mr-2 justify-end"
           />
         </label>
-        <label className="flex flex-row justify-between mb-5">
+        <label className="flex flex-row justify-between mb-5 text-xl">
           Assigned To:
           <input
             type="text"
@@ -49,7 +51,7 @@ export default function Form({ formData, handleChange, handleSubmit }) {
             className="border rounded px-1 mr-2"
           />
         </label>
-        <label className="flex flex-row justify-between mb-5">
+        <label className="flex flex-row justify-between mb-5 text-xl">
           Date Bought:*
           <input
             type="text"
@@ -62,7 +64,7 @@ export default function Form({ formData, handleChange, handleSubmit }) {
             className="border rounded px-1 mr-2 flex justify-end"
           />
         </label>
-        <label className="flex flex-row justify-between mb-5">
+        <label className="flex flex-row justify-between mb-5 text-xl">
           Device Type:*
           <input
             type="text"
@@ -75,7 +77,7 @@ export default function Form({ formData, handleChange, handleSubmit }) {
             className="border rounded px-1 mr-2"
           />
         </label>
-        <label className="flex flex-row justify-between mb-5">
+        <label className="flex flex-row justify-between mb-5 text-xl">
           Decommission Date:
           <input
             type="text"
@@ -87,7 +89,7 @@ export default function Form({ formData, handleChange, handleSubmit }) {
             className="border rounded px-1 mr-2"
           />
         </label>
-        <label className="flex flex-row justify-between mb-5">
+        <label className="flex flex-row justify-between mb-5 text-xl">
           Operating System:*
           <select
             value={formData.operatingSystem}
