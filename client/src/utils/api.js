@@ -1,10 +1,13 @@
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
 // const headers = new Headers();
-const headers = {
-  'Content-Type':'application/json',
-  'Access-Control-Allow-Origin': "https://device-asset-register-client.herokuapp.com/"
-}
+// const headers = {
+//   'Content-Type':'application/json',
+//   'Access-Control-Allow-Origin': "https://device-asset-register-client.herokuapp.com/"
+// }
+
+const headers = new Headers();
+headers.append("Content-Type", "application/json");
 
  /**
   * Fetch `json` from the specified URL and handle error status codes and ignore `AbortError`s
