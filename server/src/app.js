@@ -10,9 +10,9 @@ const devicesRouter = require("./devices/devices.router");
 
 const app = express();
 
-app.get('./allow-cors', function (req, res) {
-  response.set('Access-Control-Allow-Origin', '*');
-  response.sendFile(__dirname + '/message.json');
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
 });
 
 app.use(cors());
