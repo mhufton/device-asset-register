@@ -28,10 +28,21 @@ export default function EditDevice() {
         try {
           const loadedDevice = await readDevice(device_id)
           // format the loaded device date to trim the date 
-          const formattedDevice = {
-            ...loadedDevice,
-            dateBought: loadedDevice.dateBought.slice(0, 10),
-            decommissionDate: loadedDevice.decommissionDate.slice(0, 10),
+          // with conditional if decomissionDate is null
+          // dateBought will never be null as it is a required field 
+          let formattedDevice;
+          if (loadedDevice.decommissionDate !== null) {
+              formattedDevice = {
+              ...loadedDevice,
+              dateBought: loadedDevice.dateBought.slice(0, 10),
+              decommissionDate: loadedDevice.decommissionDate.slice(0, 10),
+            }
+          } else {
+            formattedDevice = {
+              ...loadedDevice,
+              dateBought: loadedDevice.dateBought.slice(0, 10),
+              decommissionDate: "",
+            }
           }
           console.log(formattedDevice)
           setFormData(formattedDevice)
@@ -64,8 +75,8 @@ export default function EditDevice() {
 
   return (
     <>
-      <h1 className="text-center font-Oswald mt-3 text-l">Edit Device Info</h1>
       <Form
+        device_id={formData.device_id}
         formData={formData}
         setFormData={setFormData}
         handleChange={handleChange}

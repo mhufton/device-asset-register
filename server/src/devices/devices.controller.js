@@ -29,13 +29,13 @@ async function create(req, res) {
   let device = req.body.data;
   if (device.decommissionDate === "") {
     device = {
-      ...req.body.data,
+      ...device,
       decommissionDate: null
     }
   }
-  console.log("device: ", device)
+  console.log("device in create: ", device)
   const newDevice = await service.create(device);
-  console.log("newDevice", newDevice)
+  console.log("newDevices", newDevice)
   res.status(201).json({ data: newDevice })
 }
 
@@ -52,11 +52,21 @@ async function read(req, res) {
 async function update(req, res) {
   const { device } = res.locals;
   const data = req.body.data;
-  const updatedDeviceData = { 
-    ...device,
-    ...data,
-    dateBought: data.dateBought.slice(0, 10),
-    decommissionDate: data.decommissionDate.slice(0, 10)
+  let updatedDeviceData;
+  if (device.decommissionDate !== null) {
+    updatedDeviceData = { 
+      ...device,
+      ...data,
+      dateBought: data.dateBought.slice(0, 10),
+      decommissionDate: data.decommissionDate.slice(0, 10)
+    }
+  } else {
+    updatedDeviceData = { 
+      ...device,
+      ...data,
+      dateBought: data.dateBought.slice(0, 10),
+      decommissionDate: null,
+    }
   }
   console.log("date type of", typeof(data.decommissionDate))
   const updatedDevice = await service.update(updatedDeviceData);

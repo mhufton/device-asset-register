@@ -15,14 +15,20 @@ const mapOS = () => {
   })
 }
 
-export default function Form({ formData, handleChange, handleSubmit }) {
+export default function Form({ device_id, formData, handleChange, handleSubmit }) {
   return (
     <div className="flex justify-center font-Oswald font-bold">
-      <form onSubmit={handleSubmit} className="flex flex-col p-5 mt-1 bg-gray-100 rounded-xl border-2 border-slate-300">
-        <div className="flex justify-center pb-3">
-          {formData.device_id && <label>
-            ID: {formData.device_id}
-          </label>}
+      <form onSubmit={handleSubmit} className="flex flex-col px-3 py-2 mt-1 bg-gray-100 rounded-xl border-2 border-slate-300">
+        {device_id 
+        ? <h1 className="text-2xl text-center border-b pb-1">Edit Device Information</h1> 
+        : <h1 className="text-2xl text-center border-b pb-1">Create A New Device</h1>}       
+        <div className="py-4">
+          {formData.device_id && 
+          <div className="flex justify-between text-xl">
+            <h3>ID:</h3>
+            <h3 className="pr-3">{device_id}</h3>
+          </div>
+          }
         </div>
         <div>
           <label className="flex flex-row justify-between mb-5 text-xl">

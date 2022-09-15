@@ -33,8 +33,7 @@ export default function NewDevice() {
   }
 
   return (
-    <div className="font-Oswald font-bold mb-5">
-      <h1 className="text-center mt-5">Create A New Device</h1>
+    <div className="font-Oswald font-bold my-5">
       <Form
         formData={formData}
         setFormData={setFormData}
