@@ -1,10 +1,11 @@
 import React from "react";
 
-const operatingSystems = ["Mac", "Microsoft", "iPhone", "Android", "Apple", "Other"]
+const operatingSystems = ["Microsoft", "Android", "Apple", "Linux"]
 const mapOS = () => {
   return operatingSystems.map((os, index) => {
     return (
       <option
+        selected
         key={index}
         value={os}
         name={os}
@@ -104,7 +105,9 @@ export default function Form({ device_id, formData, handleChange, handleSubmit }
               value={formData.operatingSystem}
               onChange={handleChange}
               name="operatingSystem"
-              className="border rounded px-1 mr-2">
+              reqiured
+              className="border rounded px-1 mr-2 w-[177px]">
+              <option value="" disabled selected hidden className="text-left">-- Choose OS --</option>
               {mapOS()}
             </select>
           </label>

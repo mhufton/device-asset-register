@@ -9,7 +9,7 @@ export default function NewDevice() {
     dateBought: "",
     deviceType: "",
     decommissionDate: "",
-    operatingSystem: "",
+    operatingSystem: "Microsoft"
   };
   const [formData, setFormData] = React.useState(initialState)
 
