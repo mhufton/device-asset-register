@@ -8,7 +8,7 @@ export default function NewDevice() {
     assignedTo: "",
     dateBought: "",
     deviceType: "",
-    decommisionDate: "",
+    decommissionDate: "",
     operatingSystem: "",
   };
   const [formData, setFormData] = React.useState(initialState)
@@ -33,7 +33,7 @@ export default function NewDevice() {
   }
 
   return (
-    <div className="font-Oswald font-bold">
+    <div className="font-Oswald font-bold mb-5">
       <h1 className="text-center mt-5">Create A New Device</h1>
       <Form
         formData={formData}

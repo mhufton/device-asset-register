@@ -41,10 +41,10 @@ const DeleteButton = ({ device_id }) => {
 
 export default function Table({ devices }) {
   return (
-    <table className="border rounded text-s table-auto w-full font-Oswald font-bold">
+    <table className="text-s table-auto w-full font-Oswald font-bold">
       <thead className="">
-        <tr className="text-left text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <th>Device ID</th>
+        <tr className="rounded-xl text-left font-bold uppercase border-b text-gray-500">
+          <th className="pl-5">Device ID</th>
           <th>Asset Tag</th>
           <th>Assigned To</th>
           <th>Device Type</th>
@@ -57,17 +57,17 @@ export default function Table({ devices }) {
       </thead>
       {devices && devices.map((device, index) => {
         return (
-          <tbody key={device.device_id} className="">
-            <tr className="bg-white text-left">
-              <td>{device.device_id}</td>
+          <tbody key={device.device_id} className="mb-10 border-b last-of-type:border-none">
+            <tr className="bg-white text-left rounded-xl">
+              <td className="pl-5 rounded-xl">{device.device_id}</td>
               <td>{device.assetTag}</td>
               <td>{device.assignedTo}</td>
               <td>{device.deviceType}</td>
               <td>{device.operatingSystem}</td>
               <td>{device.dateBought && device.dateBought.slice(0, 10)}</td>
-              <td>{device.decommisionDate && device.decommisionDate.slice(0, 10)}</td>
+              <td>{device.decommissionDate && device.decommissionDate.slice(0, 10)}</td>
               <td><EditButton device_id={device.device_id}/></td>
-              <td><DeleteButton device_id={device.device_id}/></td>
+              <td className="rounded-xl"><DeleteButton device_id={device.device_id}/></td>
             </tr>
           </tbody>
         )

@@ -1,3 +1,5 @@
+import { formatAsDate } from "./date";
+
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
 const headers = new Headers();
@@ -59,6 +61,7 @@ export async function createDevice(device, signal) {
 export async function readDevice(device_id, signal) {
   const url = `${API_BASE_URL}/${device_id}`;
   return await fetchJson(url, { signal })
+    .then(formatAsDate)
 }
 
 export async function updateDevice(updatedDevice, signal) {

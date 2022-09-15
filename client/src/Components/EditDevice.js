@@ -9,7 +9,7 @@ export default function EditDevice() {
     assignedTo: "",
     dateBought: "",
     deviceType: "",
-    decommisionDate: "",
+    decommissionDate: "",
     operatingSystem: "",
   };
   const [formData, setFormData] = React.useState(initialState)
@@ -31,8 +31,9 @@ export default function EditDevice() {
           const formattedDevice = {
             ...loadedDevice,
             dateBought: loadedDevice.dateBought.slice(0, 10),
-            decommisionDate: loadedDevice.decommisionDate.slice(0, 10),
+            decommissionDate: loadedDevice.decommissionDate.slice(0, 10),
           }
+          console.log(formattedDevice)
           setFormData(formattedDevice)
         } catch (err) {
           console.log(err)
@@ -63,7 +64,7 @@ export default function EditDevice() {
 
   return (
     <>
-      <h1 className="text-center">Edit Device Info</h1>
+      <h1 className="text-center font-Oswald mt-3 text-l">Edit Device Info</h1>
       <Form
         formData={formData}
         setFormData={setFormData}

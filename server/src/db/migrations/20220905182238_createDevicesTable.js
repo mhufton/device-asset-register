@@ -4,7 +4,7 @@ exports.up = function(knex) {
     table.string("assetTag").notNullable();;
     table.string("assignedTo");
     table.date("dateBought").notNullable();;
-    table.date("decommisionDate");
+    table.date("decommissionDate");
     table.string("deviceType").notNullable();;
     table.string("operatingSystem").notNullable();;
   })

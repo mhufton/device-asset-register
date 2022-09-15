@@ -24,9 +24,9 @@ export default function DeviceList() {
   }, [])
 
   return (
-    <div className="mx-3 border rounded-xl">
+    <div className="mx-3 border rounded-xl mt-3">
       {devices ?
-        <Table devices={devices} />
+        <Table devices={devices}/>
         : <p>Loading...</p>}
     </div>
   )

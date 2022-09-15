@@ -4,7 +4,7 @@
     "assetTag": "Edinburgh-iPhone-01",
     "assignedTo": "Mike",
     "dateBought": "05-05-2022",
-    "decommisionDate": null,
+    "decommissionDate": null,
     "deviceType": "iPhone",
     "operatingSystem": "Apple"
   },
@@ -13,7 +13,7 @@
     "assetTag": "London-Mac-02",
     "assignedTo": "John",
     "dateBought": "01-08-2022",
-    "decommisionDate": "08-08-2022",
+    "decommissionDate": "08-08-2022",
     "deviceType": "Mac",
     "operatingSystem": "Apple"
   },
@@ -22,7 +22,7 @@
     "assetTag": "Edinburgh-Android-03",
     "assignedTo": "Emily",
     "dateBought": "06-22-2022",
-    "decommisionDate": null,
+    "decommissionDate": null,
     "deviceType": "Android",
     "operatingSystem": "Other"
   }
