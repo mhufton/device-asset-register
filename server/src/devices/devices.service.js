@@ -20,6 +20,13 @@ function read(deviceId) {
     .then((record) => record[0]);
 }
 
+function readByTag(assetTag) {
+  return knex("devices")
+    .select("*")
+    .where({ assetTag: assetTag })
+    .then((record) => record[0]);
+}
+
 function update(updatedDevice) {
   return knex("devices")
     .select("*")
@@ -38,6 +45,7 @@ module.exports = {
   list,
   create,
   read,
+  readByTag,
   update,
   destroy
 }

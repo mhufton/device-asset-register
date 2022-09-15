@@ -5,7 +5,6 @@ const mapOS = () => {
   return operatingSystems.map((os, index) => {
     return (
       <option
-        selected
         key={index}
         value={os}
         name={os}
@@ -16,10 +15,15 @@ const mapOS = () => {
   })
 }
 
-export default function Form({ device_id, formData, handleChange, handleSubmit }) {
+export default function Form({
+    device_id,
+    formData,
+    handleChange,
+    handleSubmit
+  }) {
   return (
     <div className="flex justify-center font-Oswald font-bold">
-      <form onSubmit={handleSubmit} className="flex flex-col px-3 py-2 mt-1 bg-gray-100 rounded-xl border-2 border-slate-300">
+      <form onSubmit={handleSubmit} className="flex flex-col px-3 py-2 mt-1 bg-gray-100 rounded-xl border-2 border">
         {device_id 
         ? <h1 className="text-2xl text-center border-b pb-1">Edit Device Information</h1> 
         : <h1 className="text-2xl text-center border-b pb-1">Create A New Device</h1>}       
@@ -105,9 +109,9 @@ export default function Form({ device_id, formData, handleChange, handleSubmit }
               value={formData.operatingSystem}
               onChange={handleChange}
               name="operatingSystem"
-              reqiured
+              required
               className="border rounded px-1 mr-2 w-[177px]">
-              <option value="" disabled selected hidden className="text-left">-- Choose OS --</option>
+              <option disabled className="text-left">-- Choose OS --</option>
               {mapOS()}
             </select>
           </label>

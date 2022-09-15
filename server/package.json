@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "heroku": "^7.63.4",
     "knex": "^2.3.0",
     "mssql": "^9.0.1",
     "mysql": "^2.18.1",

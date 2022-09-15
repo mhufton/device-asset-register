@@ -21,12 +21,30 @@ async function deviceExists(req, res, next) {
   }
 }
 
+async function assetTagNotTaken(req, res, next) {
+  const { assetTag } = req.body.data;
+  console.log("assetTag in middelware", assetTag)
+  const isTaken = await service.readByTag(assetTag)
+  console.log("is it taken?", isTaken)
+  if (isTaken) {
+    console.log('throwing error')
+    return next({
+      status: 400,
+      message: `The assetTag: ${assetTag} is already taken. Please use a new Asset Tag.`
+    })
+  }
+  res.locals.device = req.body.data;
+  console.log("assetTag not taken!", res.locals.device)
+  return next();
+}
+
 //
 // CRUDL
 //
 
 async function create(req, res) {
-  let device = req.body.data;
+  let device = res.locals.device;
+  console.log('device in create from res.locals', device)
   if (device.decommissionDate === "") {
     device = {
       ...device,
@@ -84,6 +102,7 @@ async function destroy(req, res) {
 module.exports = {
   list: asyncErrorBoundary(list),
   create: [
+    assetTagNotTaken,
     asyncErrorBoundary(create)
   ],
   read: [
