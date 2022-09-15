@@ -1,7 +1,11 @@
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
 const headers = new Headers();
-headers.append("Content-Type", "application/json");
+headers.append({
+  'Content-Type':'application/json',
+  'Access-Control-Allow-Origin':'*',
+  'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
+});
 
  /**
   * Fetch `json` from the specified URL and handle error status codes and ignore `AbortError`s
