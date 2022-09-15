@@ -3,8 +3,7 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:500
 // const headers = new Headers();
 const headers = {
   'Content-Type':'application/json',
-  'Access-Control-Allow-Origin':'*',
-  'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
+  'Access-Control-Allow-Origin': "https://device-asset-register-client.herokuapp.com/"
 }
 
  /**
