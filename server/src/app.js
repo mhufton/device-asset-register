@@ -12,7 +12,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://device-asset-register-server.herokuapp.com/"
+    origin: "https://device-asset-register-client.herokuapp.com/"
   })
 );
 app.use(express.json());
