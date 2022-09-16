@@ -10,11 +10,7 @@ const devicesRouter = require("./devices/devices.router");
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://device-asset-register-client.herokuapp.com/"
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 app.use("/", devicesRouter);
