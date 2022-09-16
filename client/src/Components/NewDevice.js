@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./Form"
 import { createDevice } from "../utils/api"
+import { useNavigate } from "react-router-dom";
 
 export default function NewDevice() {
   const initialState = {
@@ -13,6 +14,7 @@ export default function NewDevice() {
   };
   const [formData, setFormData] = React.useState(initialState)
   const [errors, setErrors] = React.useState(null)
+  const navigate = useNavigate();
 
   const handleChange = ({ target }) => {
     setFormData({
@@ -29,6 +31,7 @@ export default function NewDevice() {
         .catch((error) => setErrors(error))
       setFormData(initialState)
       // window.location.reload()
+      navigate(0)
     } catch (error) {
       setErrors(error)
       console.log(error)

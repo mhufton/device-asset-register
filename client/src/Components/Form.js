@@ -1,19 +1,25 @@
 import React from "react";
 
 const operatingSystems = ["Microsoft", "Android", "Apple", "Linux"]
-const mapOS = () => {
-  return operatingSystems.map((os, index) => {
-    return (
-      <option
-        key={index}
-        value={os}
-        name={os}
-      >
-        {os}
-      </option>
-    )
-  })
+const listOfNames = ["Mike", "Hannah", "Emily", "Bill"]
+function mapSelectBox(array) {
+  if (array) {
+    return array.map((item, index) => {
+      return (
+        <option
+          key={item}
+          value={item}
+          name={item}
+        >
+          {item}
+        </option>
+      )
+    })
+  }
+  return null
 }
+
+
 
 export default function Form({
     device_id,
@@ -53,7 +59,7 @@ export default function Form({
               className="border rounded px-1 mr-2 justify-end"
             />
           </label>
-          <label className="flex flex-row justify-between mb-5 text-xl">
+          {/* <label className="flex flex-row justify-between mb-5 text-xl">
             Assigned To:
             <input
               type="text"
@@ -64,6 +70,20 @@ export default function Form({
               value={formData.assignedTo}
               className="border rounded px-1 mr-2"
             />
+          </label> */}
+          <label className="flex flex-row justify-between mb-5 text-xl">
+            Assigned To:
+            <select
+              type="text"
+              id="assignedTo"
+              name="assignedTo"
+              placeholder="Enter assingee"
+              onChange={handleChange}
+              value={formData.assignedTo}
+              className="border rounded px-1 mr-2 w-[177px]">
+              <option value="" className="text-left">Not Assigned</option>
+              {mapSelectBox(listOfNames)}
+            </select>
           </label>
           <label className="flex flex-row justify-between mb-5 text-xl">
             Date Bought:*
@@ -112,7 +132,7 @@ export default function Form({
               required
               className="border rounded px-1 mr-2 w-[177px]">
               <option disabled className="text-left">-- Choose OS --</option>
-              {mapOS()}
+              {mapSelectBox(operatingSystems)}
             </select>
           </label>
         </div>
